@@ -1,0 +1,26 @@
+[
+    {
+        "id" : 1,
+        "ime" : "Apartment"
+    },
+    {
+        "id" : 2,
+        "ime" : "Villa"
+    },
+    {
+        "id" : 3,
+        "ime" : "Home"
+    },
+    {
+        "id" : 4,
+        "ime" : "Office"
+    },
+    {
+        "id" : 5,
+        "ime" : "Building"
+    },
+    {
+        "id" : 6,
+        "ime" : "Shop"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "url": "index.html",
+        "text": "Home"
+    },
+    {
+        "url": "property.html",
+        "text": "Property"
+    },
+    {
+        "url": "contact.html",
+        "text": "Contact"
+    },
+    {
+        "url": "author.html",
+        "text": "Author"
+    }
+]

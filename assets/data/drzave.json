@@ -1,0 +1,18 @@
+[
+    {
+        "id" : 1,
+        "ime" : "USA"
+    },
+    {
+        "id" : 2,
+        "ime" : "Germany"
+    },
+    {
+        "id" : 3,
+        "ime" : "Canada"
+    },
+    {
+        "id" : 4,
+        "ime" : "France"
+    }
+]

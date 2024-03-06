@@ -1,0 +1,22 @@
+[
+    {
+        "id" : 1,
+        "ime" : "Washington",
+        "idDrzave": 1
+    },
+    {
+        "id" : 2,
+        "ime" : "Berlin",
+        "idDrzave" : 2
+    },
+    {
+        "id" : 3,
+        "ime" : "Ontario",
+        "idDrzave": 3
+    },
+    {
+        "id" : 4,
+        "ime" : "Paris",
+        "idDrzave" : 4
+    }
+]

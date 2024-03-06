@@ -1,0 +1,142 @@
+[
+    {
+        "id" : 1,
+        "tipProdaje" : 1,
+        "slika" : {
+            "src" : "assets/img/property-1.jpg",
+            "alt" : "Prva slika"
+        },
+        "kategorijaObjekta" : 2,
+        "cena" : {
+            "stara" : 160000,
+            "nova" : ""
+        },
+        "naziv" : "Apartman 1",
+        "lokacija" : {
+            "drzava" : 1,
+            "grad" : 1,
+            "ulica" : "Neka ulica 123"
+        },
+        "osobine" : {
+            "velicinaObjekta" : 900,
+            "brojKreveta" : 1,
+            "brojKupatila" : 1
+        }
+    },
+    {
+        "id" : 2,
+        "tipProdaje" : 1,
+        "slika" : {
+            "src" : "assets/img/property-2.jpg",
+            "alt" : "Prva slika"
+        },
+        "kategorijaObjekta" : 2,
+        "cena" : {
+            "stara" : 120000,
+            "nova" : ""
+        },
+        "naziv" : "Villa 1",
+        "lokacija" : {
+            "drzava" : 2,
+            "grad" : 2,
+            "ulica" : "Neka ulica 123"
+        },
+        "osobine" : {
+            "velicinaObjekta" : 1000,
+            "brojKreveta" : 4,
+            "brojKupatila" : 2
+        }
+    },{
+        "id" : 3,
+        "tipProdaje" : 1,
+        "slika" : {
+            "src" : "assets/img/property-3.jpg",
+            "alt" : "Prva slika"
+        },
+        "kategorijaObjekta" : 3,
+        "cena" : {
+            "stara" : 140000,
+            "nova" : ""
+        },
+        "naziv" : "Kuca 1",
+        "lokacija" : {
+            "drzava" : 3,
+            "grad" : 3,
+            "ulica" : "Neka ulica 123"
+        },
+        "osobine" : {
+            "velicinaObjekta" : 1200,
+            "brojKreveta" : 4,
+            "brojKupatila" : 2
+        }
+    },{
+        "id" : 4,
+        "tipProdaje" : 2,
+        "slika" : {
+            "src" : "assets/img/property-4.jpg",
+            "alt" : "Prva slika"
+        },
+        "kategorijaObjekta" : 4,
+        "cena" : {
+            "stara" : 190000,
+            "nova" : ""
+        },
+        "naziv" : "Banka 1",
+        "lokacija" : {
+            "drzava" : 4,
+            "grad" : 4,
+            "ulica" : "Neka ulica 123"
+        },
+        "osobine" : {
+            "velicinaObjekta" : 700,
+            "brojKreveta" : 4,
+            "brojKupatila" : 2
+        }
+    },{
+        "id" : 5,
+        "tipProdaje" : 2,
+        "slika" : {
+            "src" : "assets/img/property-5.jpg",
+            "alt" : "Prva slika"
+        },
+        "kategorijaObjekta" : 5,
+        "cena" : {
+            "stara" : 110000,
+            "nova" : ""
+        },
+        "naziv" : "Zgrada 1",
+        "lokacija" : {
+            "drzava" : 1,
+            "grad" : 1,
+            "ulica" : "Neka ulica 123"
+        },
+        "osobine" : {
+            "velicinaObjekta" : 300,
+            "brojKreveta" : 4,
+            "brojKupatila" : 2
+        }
+    },{
+        "id" : 6,
+        "tipProdaje" : 2,
+        "slika" : {
+            "src" : "assets/img/property-6.jpg",
+            "alt" : "Prva slika"
+        },
+        "kategorijaObjekta" : 6,
+        "cena" : {
+            "stara" : 170000,
+            "nova" : ""
+        },
+        "naziv" : "Stanica 1",
+        "lokacija" : {
+            "drzava" : 1,
+            "grad" : 1,
+            "ulica" : "Neka ulica 123"
+        },
+        "osobine" : {
+            "velicinaObjekta" : 650,
+            "brojKreveta" : 4,
+            "brojKupatila" : 2
+        }
+    }
+]

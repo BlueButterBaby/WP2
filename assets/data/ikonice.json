@@ -1,0 +1,62 @@
+[
+    {
+        "id" : 1,
+        "delay" : 0.1,
+        "slika" : {
+            "src" : "assets/img/icon-apartment.png",
+            "alt" : "Apartment Icon"
+        },
+        "ime" : "Apartment",
+        "opis" : "Exclusive Apartments"
+    },
+    {
+        "id" : 2,
+        "delay" : 0.3,
+        "slika" : {
+            "src" : "assets/img/icon-villa.png",
+            "alt" : "Villa Icon"
+        },
+        "ime" : "Villa",
+        "opis" : "Affordable Villas"
+    },
+    {
+        "id" : 3,
+        "delay" : 0.5,
+        "slika" : {
+            "src" : "assets/img/icon-house.png",
+            "alt" : "House Icon"
+        },
+        "ime" : "Home",
+        "opis" : "Cheap Housing"
+    },
+    {
+        "id" : 4,
+        "delay" : 0.1,
+        "slika" : {
+            "src" : "assets/img/icon-housing.png",
+            "alt" : "Office Icon"
+        },
+        "ime" : "Office",
+        "opis" : "City Center Offices"
+    },
+    {
+        "id" : 5,
+        "delay" : 0.3,
+        "slika" : {
+            "src" : "assets/img/icon-building.png",
+            "alt" : "Building Icon"
+        },
+        "ime" : "Building",
+        "opis" : "Commercial and Private"
+    },
+    {
+        "id" : 6,
+        "delay" : 0.5,
+        "slika" : {
+            "src" : "assets/img/icon-condominium.png",
+            "alt" : "Shop Icon"
+        },
+        "ime" : "Shop",
+        "opis" : "Best Locations"
+    }
+]
