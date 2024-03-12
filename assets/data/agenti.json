@@ -1,0 +1,26 @@
+[
+    {
+        "ime": "1",
+        "delay": "0.1",
+        "struka": "Pomocnik",
+        "slika": "assets/img/team-1.jpg"
+    },
+    {
+        "ime": "2",
+        "delay": "0.3",
+        "struka": "Pomocnik",
+        "slika": "assets/img/team-2.jpg"
+    },
+    {
+        "ime": "3",
+        "delay": "0.5",
+        "struka": "Pomocnik",
+        "slika": "assets/img/team-3.jpg"
+    },
+    {
+        "ime": "4",
+        "delay": "0.7",
+        "struka": "Pomocnik",
+        "slika": "assets/img/team-4.jpg"
+    }
+]

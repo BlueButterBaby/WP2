@@ -4,7 +4,8 @@ window.onload = function(){
 
 
     ajaxCallbackFunkcija("meni", ispisNavMenija);
-    ajaxCallbackFunkcija("ikonice", kreirajIkonice); //29:46 na 4. snimku
+    ajaxCallbackFunkcija("ikonice", kreirajIkonice);
+    ajaxCallbackFunkcija("agenti", kreirajAgente);
 
     //Dohvatanje kategorije.json
     $.ajax({
@@ -26,6 +27,18 @@ window.onload = function(){
         dataType : "json",
         success: function(data){
             kreirajPadajucuListu(data, "ddlDrzave", "listaDrzava", "Country");
+        },
+        error: function(xhr){
+            console.log(xhr);
+        }
+    });
+
+    $.ajax({
+        url: "assets/data/teme.json",
+        method: "GET",
+        dataType: "json",
+        success: function(data){
+            kreirajPadajucuListu(data, "ddlTeme", "bkTeme", "Subject");
         },
         error: function(xhr){
             console.log(xhr);
@@ -73,6 +86,7 @@ window.onload = function(){
     
     
     $("#ddlGradovi").attr("disabled", "disabled");
+    
 };
 
 function ajaxCallbackFunkcija(nazivFajla, callbackFunkcija){
@@ -87,6 +101,34 @@ function ajaxCallbackFunkcija(nazivFajla, callbackFunkcija){
             console.log(xhr);
         }
     });
+}
+
+function kreirajAgente(agenti){
+    let ispis = `<div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Property Agents</h1>
+                    <p>Our agents are extremly qualified and offer the best help on the market.</p>
+                </div>
+                <div class="row g-4">`;
+                agenti.forEach(el =>
+                    ispis+= `<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="${el.delay}">
+                                <div class="team-item rounded overflow-hidden">
+                                    <div class="position-relative">
+                                        <img class="img-fluid" src="${el.slika}" alt="${el.ime}"/>
+                                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                            <a class="btn btn-square mx-1" href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                                            <a class="btn btn-square mx-1" href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                                            <a class="btn btn-square mx-1" href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="text-center p-4 mt-3">
+                                        <h5 class="fw-bold mb-0">${el.ime}</h5>
+                                        <small>${el.struka}</small>
+                                    </div>
+                                </div>
+                            </div>`);
+    ispis+= `</div>`;
+
+    $("#agents").html(ispis);
 }
 
 function ispisNavMenija(nizLinkova){
@@ -117,7 +159,7 @@ function kreirajIkonice(ikonice){
     let ispis = `<div class="container">
                     <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                         <h1 class="mb-3">Property Types</h1>
-                        <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+                        <p>Select which property type you would like to browse</p>
                     </div>
                  <div class="row g-4">`;
                  for(let ikonica of ikonice){
@@ -312,3 +354,92 @@ $(document).on("mouseover", "#sortiranje", function (){
         ispisNekretnina(nekretnine);
     }));
 });
+
+//PROVERA FORME
+$("#bkForma").on("submit", function(e){
+    e.preventDefault();
+    obradaForme();
+})
+
+var brojGresaka
+
+function obradaForme(){
+    regexName = /^[A-Z][a-z]{2,19}(\s[A-Z][a-z]{2,19}){0,3}$/;
+    regexEmail = /^[_a-z0-9]+((\.)[_a-z0-9]+){0,2}@(gmail.com|yahoo.com|hotmail.com)$/;
+    regexPoruka = /^[A-z0-9\,\?\!\.\s]{3,255}$/;
+    brojGresaka = 0;
+
+    poljeName = document.querySelector("#bkIme");
+    poljeEmail = document.querySelector("#bkEmail");
+    poljePoruka = document.querySelector("#bkPoruka");
+    nizPol = document.getElementsByName("bkRadio");
+    elementDDLTeme = document.getElementById("ddlTeme");
+    
+
+    proveraIzraza(regexName, poljeName, "Name is incorrect, example: John Smith.");
+    proveraIzraza(regexEmail, poljeEmail, "Email is not in a correct format, example: example@gmail.com");
+    proveraIzraza(regexPoruka, poljePoruka, "Message not allowed.");
+
+    if(elementDDLTeme.selectedIndex == 0){
+        elementDDLTeme.parentElement.nextElementSibling.classList.remove("bkHideElement");
+        elementDDLTeme.parentElement.nextElementSibling.textContent = "You must select a subject.";
+        elementDDLTeme.parentElement.classList.add("bkRedBorder");
+        elementDDLTeme.parentElement.classList.remove("border");
+        brojGresaka++;     
+    }
+    else{
+        elementDDLTeme.parentElement.nextElementSibling.classList.add("bkHideElement");
+        elementDDLTeme.parentElement.nextElementSibling.textContent = "";
+        elementDDLTeme.parentElement.classList.remove("bkRedBorder");
+        elementDDLTeme.parentElement.classList.add("border");
+    };
+
+    let polVrednost = "";
+
+    for(let i = 0; i < nizPol.length; i++){
+        if(nizPol[i].checked){
+            polVrednost = nizPol[i].value;
+            break;          
+        }
+    };
+    proveraCekiranihElemenata(polVrednost, nizPol, "You must choose your sex.");
+
+    if(brojGresaka != 0){
+        return false;
+    };
+
+    if(brojGresaka == 0){
+        poljePoruka.nextElementSibling.nextElementSibling.classList.remove("bkHideElement", "alert", "alert-danger");
+        poljePoruka.nextElementSibling.nextElementSibling.innerHTML = "Form submission is successful.";
+        poljePoruka.nextElementSibling.nextElementSibling.classList.add("success", "alert-success");
+        return true;
+    };
+};
+
+function proveraIzraza(regIzraz, vrednost, poruka){
+    if(!regIzraz.test(vrednost.value)){
+        vrednost.nextElementSibling.nextElementSibling.classList.remove("bkHideElement");
+        vrednost.nextElementSibling.nextElementSibling.innerHTML = poruka;
+        vrednost.classList.add("bkRedBorder");
+        brojGresaka++;
+    }
+    else{
+        vrednost.nextElementSibling.nextElementSibling.classList.add("bkHideElement");
+        vrednost.nextElementSibling.nextElementSibling.innerHTML = "";
+        vrednost.classList.remove("bkRedBorder");
+    };
+};
+
+function proveraCekiranihElemenata(vrednostCekiranihElemenata, niz, poruka){
+    if(vrednostCekiranihElemenata == ""){
+        niz[0].parentElement.parentElement.nextElementSibling.firstElementChild.classList.remove("bkHideElement");
+        niz[0].parentElement.parentElement.nextElementSibling.firstElementChild.innerHTML = poruka;
+        niz[0].parentElement.parentElement.classList.add("bkRedBorder");
+        brojGresaka++;
+    }
+    else{
+        niz[0].parentElement.parentElement.nextElementSibling.firstElementChild.classList.add("bkHideElement");
+        niz[0].parentElement.parentElement.nextElementSibling.firstElementChild.innerHTML = "";
+        niz[0].parentElement.parentElement.classList.remove("bkRedBorder");
+    };
+};
