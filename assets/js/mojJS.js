@@ -1,107 +1,10 @@
-var nekretnine, gradovi, drzave, kategorije, tipProdaje;
+var TIPPRODAJE, NEKRETNINE, GRADOVI, DRZAVE, KATEGORIJE;
 window.onload = function(){
 
-
-
-    ajaxCallbackFunkcija("meni", ispisNavMenija);
-    ajaxCallbackFunkcija("ikonice", kreirajIkonice);
-    ajaxCallbackFunkcija("agenti", kreirajAgente);
-
-    //Dohvatanje kategorije.json
-    $.ajax({
-        url: "assets/data/kategorije.json",
-        method : "GET",
-        dataType : "json",
-        success: function(data){
-            kreirajPadajucuListu(data, "ddlKategorije", "listaKategorija", "Property Type");
-        },
-        error: function(xhr){
-            console.log(xhr);
-        }
-    });
-
-    //Dohvatanje drzave.json
-    $.ajax({
-        url: "assets/data/drzave.json",
-        method : "GET",
-        dataType : "json",
-        success: function(data){
-            kreirajPadajucuListu(data, "ddlDrzave", "listaDrzava", "Country");
-        },
-        error: function(xhr){
-            console.log(xhr);
-        }
-    });
-
-    $.ajax({
-        url: "assets/data/teme.json",
-        method: "GET",
-        dataType: "json",
-        success: function(data){
-            kreirajPadajucuListu(data, "ddlTeme", "bkTeme", "Subject");
-        },
-        error: function(xhr){
-            console.log(xhr);
-        }
-    });
-
-    // //Dohvatanje nekretnine.json
-    // $.ajax({
-    //     url: "assets/data/drzave.json",
-    //     method : "GET",
-    //     dataType : "json",
-    //     success: function(data){
-    //         ispisNekretnina(data);
-    //     },
-    //     error: function(xhr){
-    //         console.log(xhr);
-    //     }
-    // });
-
-    // //Dohvatanje tipProdaje.json
-    // $.ajax({
-    //     url: "assets/data/tipProdaje.json",
-    //     method : "GET",
-    //     dataType : "json",
-    //     success: function(data){
-    //         console.log(data);
-    //     },
-    //     error: function(xhr){
-    //         console.log(xhr);
-    //     }
-    // });
-
-    // //Dohvatanje gradovi.json
-    // $.ajax({
-    //     url: "assets/data/gradovi.json",
-    //     method : "GET",
-    //     dataType : "json",
-    //     success: function(data){
-    //         console.log(data);
-    //     },
-    //     error: function(xhr){
-    //         console.log(xhr);
-    //     }
-    // });
-    
-    
-    $("#ddlGradovi").attr("disabled", "disabled");
-    
+    asinhronoDohvatanjePodataka();
+     
+    $("#ddlGradovi").attr("disabled", "disabled"); 
 };
-
-function ajaxCallbackFunkcija(nazivFajla, callbackFunkcija){
-    $.ajax({
-        url: "assets/data/" + nazivFajla + ".json",
-        method : "GET",
-        dataType : "json",
-        success: function(data){
-            callbackFunkcija(data);
-        },
-        error: function(xhr){
-            console.log(xhr);
-        }
-    });
-}
 
 function kreirajAgente(agenti){
     let ispis = `<div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
@@ -179,14 +82,15 @@ function kreirajIkonice(ikonice){
     $("#vrsteNekretnina").html(ispis);
 };
 
-function ispisNekretnina(nizNekretnina){
+function ispisNekretnina(nekretnine, kategorije, tipProdaje, gradovi, drzave){
     let ispis = "";
-    if(nizNekretnina.length == 0){
+    
+    if(nekretnine.length == 0){
         ispis+= `<div class = "col-lg-12">
             <p>No matches found.</p>
         </div>`;
     }else{
-        for(nekretnina of nizNekretnina){
+        for(nekretnina of nekretnine){
             ispis+=`<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
@@ -206,7 +110,7 @@ function ispisNekretnina(nizNekretnina){
                             </div>
                         </div>
                     </div>`;
-        };    
+        };
     }
     $("#properties").html(ispis);
 };
@@ -231,46 +135,44 @@ function proveraJednine(broj, rec){
     return ispis;
 };
 
+var filtriraneNekretninePoKategoriji = [];
+function filtriranjePoKategoriji(vrednost){
+    filtriraneNekretninePoKategoriji = NEKRETNINE.filter(el => el.kategorijaObjekta == vrednost);
+    return filtriraneNekretninePoKategoriji;
+}
+
 function filtriranjeNekretnina(vrednost, tip, poruka){
     let filtriraneNekretnine = [];
 
      if(tip == "grad"){
-         filtriraneNekretnine = nekretnine.filter(el => el.lokacija.grad == vrednost);
-     }
-    
-     if(tip == "kategorija"){
-         filtriraneNekretnine = nekretnine.filter(el => el.kategorijaObjekta == vrednost);
+         filtriraneNekretnine = NEKRETNINE.filter(el => el.lokacija.grad == vrednost);
      }
 
      if(tip == "drzava"){
-         filtriraneNekretnine = nekretnine.filter(el => el.lokacija.drzava == vrednost);
+         filtriraneNekretnine = NEKRETNINE.filter(el => el.lokacija.drzava == vrednost);
      }
 
     if(filtriraneNekretnine.length != 0){     
-        ispisNekretnina(filtriraneNekretnine);
+        ispisNekretnina(filtriraneNekretnine, KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);
     }else{
         let ispis = `<p class = "alert-danger alert text-center">No properties in this ${poruka}.</p>`;
         $("#properties").html(ispis);
     }
 };
 
-function ispisCenaNekretnina(nizNekretnina){
-
-    // for(let objekat of nizNekretnina){
-    //     let cenaNekretnina = objekat.cena.stara;
-    //     console.log(cenaNekretnina);
-    // }
-}
-ispisCenaNekretnina(nekretnine);
-
 //FILTRIRANJE PO KATEGORIJI
 $(document).on("change", "#ddlKategorije", function(){
     let vrednostPoljaZaKategoriju = $("#ddlKategorije").val();
 
-    filtriranjeNekretnina(vrednostPoljaZaKategoriju, "kategorija", "category");
+    if(filtriranjePoKategoriji(vrednostPoljaZaKategoriju).length == 0){
+        let ispis = `<p class = "alert-danger alert text-center">No properties in this category.</p>`;
+        $("#properties").html(ispis);
+    }else{
+        ispisNekretnina(filtriranjePoKategoriji(vrednostPoljaZaKategoriju), KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);
+    }
 
     if(vrednostPoljaZaKategoriju == 0){
-        ispisNekretnina(nekretnine);
+        ispisNekretnina(NEKRETNINE, KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);
     }   
 });
 
@@ -282,7 +184,7 @@ $(document).on("change", "#ddlDrzave", function(){
 
     //Ispis gradova u odnosu na izabranu drzavu
     let filtriraniGradovi = [];
-    filtriraniGradovi = gradovi.filter(el => el.idDrzave == vrednostPoljaZaDrzavu);
+    filtriraniGradovi = GRADOVI.filter(el => el.idDrzave == vrednostPoljaZaDrzavu);
     kreirajPadajucuListu(filtriraniGradovi, "ddlGradovi", "listaGradova", "City");
 
     filtriranjeNekretnina(vrednostPoljaZaDrzavu, "drzava", "country");
@@ -296,7 +198,7 @@ $(document).on("change", "#ddlDrzave", function(){
     };
     
     if(vrednostPoljaZaDrzavu == 0){
-        ispisNekretnina(nekretnine);
+        ispisNekretnina(NEKRETNINE, KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);
     }
 });
 
@@ -307,7 +209,7 @@ $(document).on("change", "#ddlGradovi", function(){
     filtriranjeNekretnina(vrednostPoljaZaGrad, "grad", "city");
 
     if(vrednostPoljaZaGrad == 0){
-        ispisNekretnina(nekretnine);
+        ispisNekretnina(NEKRETNINE, KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);
     }
 });
 
@@ -316,31 +218,31 @@ $(document).on("mouseover", "#sortiranje", function (){
 
     //Sortiranje od manje ka vecoj ceni
     if($("#sortiranje").on("click", "#sortLowestPrice", function(){
-        nekretnine.sort(function(a,b){
+        NEKRETNINE.sort(function(a,b){
             return a.cena.stara - b.cena.stara;
         });
-        ispisNekretnina(nekretnine);
+        ispisNekretnina(NEKRETNINE, KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);
     }));
 
     //Sortiranje od vece ka manjoj ceni
     if($("#sortiranje").on("click", "#sortHighestPrice", function(){
-        nekretnine.sort(function(a,b){
+        NEKRETNINE.sort(function(a,b){
            return b.cena.stara - a.cena.stara;
         }); 
-        ispisNekretnina(nekretnine);  
+        ispisNekretnina(NEKRETNINE, KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);  
     }));
 
     //Sortiranje od najvece ka najmanjoj velicini
     if($("#sortiranje").on("click", "#sortBiggestSize", function(){
-        nekretnine.sort(function(a,b){
+        NEKRETNINE.sort(function(a,b){
             return b.osobine.velicinaObjekta - a.osobine.velicinaObjekta;
         }); 
-        ispisNekretnina(nekretnine);
+        ispisNekretnina(NEKRETNINE, KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);
     }));
 
     //Sortiranje po imenu u opadajucem redosledu
     if($("#sortiranje").on("click", "#sortNameDesc", function(){
-        nekretnine.sort(function(a,b){
+        NEKRETNINE.sort(function(a,b){
             if(a.naziv < b.naziv){
                 return -1;
             }
@@ -351,7 +253,7 @@ $(document).on("mouseover", "#sortiranje", function (){
                 return 1;
             }     
         }); 
-        ispisNekretnina(nekretnine);
+        ispisNekretnina(NEKRETNINE, KATEGORIJE, TIPPRODAJE, GRADOVI, DRZAVE);
     }));
 });
 
@@ -442,4 +344,46 @@ function proveraCekiranihElemenata(vrednostCekiranihElemenata, niz, poruka){
         niz[0].parentElement.parentElement.nextElementSibling.firstElementChild.innerHTML = "";
         niz[0].parentElement.parentElement.classList.remove("bkRedBorder");
     };
+};
+
+async function asinhronoDohvatanjePodataka(){
+    let meniFetch = await fetch("assets/data/meni.json");
+    let meni = await meniFetch.json();
+    ispisNavMenija(meni);
+
+    let ikoniceFetch = await fetch("assets/data/ikonice.json");
+    let ikonice = await ikoniceFetch.json();
+    kreirajIkonice(ikonice);
+
+    let agentiFetch = await fetch("assets/data/agenti.json");
+    let agenti = await agentiFetch.json();
+    kreirajAgente(agenti);
+
+    let drzaveFetch = await fetch("assets/data/drzave.json");
+    let drzave = await drzaveFetch.json();
+    kreirajPadajucuListu(drzave, "ddlDrzave", "listaDrzava", "Country");
+
+    let gradoviFetch = await fetch("assets/data/gradovi.json");
+    let gradovi = await gradoviFetch.json();
+
+    let kategorijeFetch = await fetch("assets/data/kategorije.json");
+    let kategorije = await kategorijeFetch.json();
+    kreirajPadajucuListu(kategorije, "ddlKategorije", "listaKategorija", "Property Type");
+    
+    let temeFetch = await fetch("assets/data/teme.json");
+    let teme = await temeFetch.json();
+    kreirajPadajucuListu(teme, "ddlTeme", "bkTeme", "Subject");
+
+    let tipProdajeFetch = await fetch("assets/data/tipProdaje.json");
+    let tipProdaje = await tipProdajeFetch.json();
+
+    let nekretnineFetch = await fetch("assets/data/nekretnine.json");
+    let nekretnine = await nekretnineFetch.json();
+    ispisNekretnina(nekretnine, kategorije, tipProdaje, gradovi, drzave);
+
+    NEKRETNINE = nekretnine;
+    TIPPRODAJE = tipProdaje;
+    GRADOVI = gradovi;
+    DRZAVE = drzave;
+    KATEGORIJE = kategorije;
 };
