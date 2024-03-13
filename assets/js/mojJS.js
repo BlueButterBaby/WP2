@@ -135,7 +135,6 @@ function proveraJednine(broj, rec){
     return ispis;
 };
 
-
 var filtriraneNekretninePoKategoriji = [];
 function filtriranjePoKategoriji(vrednost){
     filtriraneNekretninePoKategoriji = NEKRETNINE.filter(el => el.kategorijaObjekta == vrednost);
@@ -262,14 +261,34 @@ $(document).on("mouseover", "#sortiranje", function (){
 $("#bkForma").on("submit", function(e){
     e.preventDefault();
     obradaForme();
-})
+});
 
-var brojGresaka
+$("#newsletterBtn").on("click", function(e){
+    e.preventDefault();
+    proveraNewsletter();
+});
+
+function proveraNewsletter(){
+    let regexEmail = /^[_a-z0-9]+((\.)[_a-z0-9]+){0,2}@(gmail.com|yahoo.com|hotmail.com)$/;
+    poljeNewsletterEmail = document.querySelector("#bkNewsletter");
+    if(!regexEmail.test(poljeNewsletterEmail.value)){
+        poljeNewsletterEmail.parentElement.nextElementSibling.classList.remove("bkHideElement", "success", "alert-success");
+        poljeNewsletterEmail.parentElement.nextElementSibling.classList.add("alert", "alert-danger");
+        poljeNewsletterEmail.parentElement.nextElementSibling.innerHTML = "Email is not in a correct format, example: example@gmail.com";
+    }
+    else{
+        poljeNewsletterEmail.parentElement.nextElementSibling.classList.remove("bkHideElement", "alert", "alert-danger");
+        poljeNewsletterEmail.parentElement.nextElementSibling.innerHTML = "You've successfully signed up!";
+        poljeNewsletterEmail.parentElement.nextElementSibling.classList.add("success", "alert-success");
+    };
+};
+
+var brojGresaka;
 
 function obradaForme(){
-    regexName = /^[A-Z][a-z]{2,19}(\s[A-Z][a-z]{2,19}){0,3}$/;
-    regexEmail = /^[_a-z0-9]+((\.)[_a-z0-9]+){0,2}@(gmail.com|yahoo.com|hotmail.com)$/;
-    regexPoruka = /^[A-z0-9\,\?\!\.\s]{3,255}$/;
+    let regexName = /^[A-Z][a-z]{2,19}(\s[A-Z][a-z]{2,19}){0,3}$/;
+    let regexEmail = /^[_a-z0-9]+((\.)[_a-z0-9]+){0,2}@(gmail.com|yahoo.com|hotmail.com)$/;
+    let regexPoruka = /^[A-z0-9\,\?\!\.\s]{3,255}$/;
     brojGresaka = 0;
 
     poljeName = document.querySelector("#bkIme");

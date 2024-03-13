@@ -127,7 +127,7 @@
 
         <!-- Testimonial Start -->
         <div class="container-xxl py-5">
-            <div class="container">
+            <div class="container" id = "clients">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h4 class="mb-3">Our Clients Say!</h4>
                     <p>See what some of our satisfied clients have to say.</p>
@@ -135,36 +135,36 @@
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                     <div class="testimonial-item bg-light rounded p-3">
                         <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                            <p>Communication with the agent was smooth, and the transaction process was seamless.</p>
                             <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="assets/img/testimonial-1.jpg" style="width: 45px; height: 45px;"/>
+                                <img class="img-fluid flex-shrink-0 rounded" src="assets/img/testimonial-1.jpg" alt = "First Customer" style="width: 45px; height: 45px;"/>
                                 <div class="ps-3">
-                                    <h5 class="fw-bold mb-1">Client Name</h5>
-                                    <small>Profession</small>
+                                    <h5 class="fw-bold mb-1">Jane Doe</h5>
+                                    <small>Teacher</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-item bg-light rounded p-3">
                         <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                            <p>Buying my dream home through Dream Homes was an absolute breeze! </p>
                             <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="assets/img/testimonial-2.jpg" style="width: 45px; height: 45px;">
+                                <img class="img-fluid flex-shrink-0 rounded" src="assets/img/testimonial-2.jpg" alt = "Second Customer" style="width: 45px; height: 45px;"/>
                                 <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Client Name</h6>
-                                    <small>Profession</small>
+                                    <h5 class="fw-bold mb-1">John Smith</h5>
+                                    <small>Doctor</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-item bg-light rounded p-3">
                         <div class="bg-white border rounded p-4">
-                            <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                            <p> I'm grateful for the convenience and efficiency, highly recommend for anyone in search of their perfect property!</p>
                             <div class="d-flex align-items-center">
-                                <img class="img-fluid flex-shrink-0 rounded" src="assets/img/testimonial-3.jpg" style="width: 45px; height: 45px;">
+                                <img class="img-fluid flex-shrink-0 rounded" src="assets/img/testimonial-3.jpg" alt = "Third Customer" style="width: 45px; height: 45px;"/>
                                 <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Client Name</h6>
-                                    <small>Profession</small>
+                                    <h5 class="fw-bold mb-1">Luke Reeves</h5>
+                                    <small>Economist</small>
                                 </div>
                             </div>
                         </div>
@@ -181,9 +181,9 @@
                 <div class="row g-5">
                     <div class="col-lg-4 col-md-6 text-center">
                         <h5 class="text-white mb-4">Get In Touch</h5>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>542 West 27th Street, New York, USA</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+0113489231</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>dreamhomes@gmail.com</p>
                         <div class="d-flex pt-2 d-flex justify-content-center">
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -202,9 +202,10 @@
                         <h5 class="text-white mb-4">Newsletter</h5>
                         <p>Sign up for our newsletter to recieve the latest news!</p>
                         <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email"/>
-                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" id = "bkNewsletter" type="text" placeholder="Your email"/>
+                            <button type="button" id = "newsletterBtn" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                         </div>
+                        <p class="alert alert-danger mt-3 bkHideElement"></p>
                     </div>
                 </div>
             </div>
