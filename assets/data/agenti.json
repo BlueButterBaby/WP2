@@ -1,26 +1,26 @@
 [
     {
-        "ime": "1",
+        "ime": "Emily Rodriguez",
         "delay": "0.1",
-        "struka": "Pomocnik",
+        "struka": "Senior Consulting Agent",
         "slika": "assets/img/team-1.jpg"
     },
     {
-        "ime": "2",
+        "ime": "Michael Reynolds",
         "delay": "0.3",
-        "struka": "Pomocnik",
+        "struka": "Junior Consulting Agent",
         "slika": "assets/img/team-2.jpg"
     },
     {
-        "ime": "3",
+        "ime": "Sarah Thompson",
         "delay": "0.5",
-        "struka": "Pomocnik",
+        "struka": "Lead Consulting Agent",
         "slika": "assets/img/team-3.jpg"
     },
     {
-        "ime": "4",
+        "ime": "Daniel Chen",
         "delay": "0.7",
-        "struka": "Pomocnik",
+        "struka": "Associate Consulting Agent",
         "slika": "assets/img/team-4.jpg"
     }
 ]

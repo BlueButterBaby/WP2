@@ -100,7 +100,7 @@ function ispisNekretnina(nekretnine, kategorije, tipProdaje, gradovi, drzave){
                             </div>
                             <div class="p-4 pb-0">
                                 <h4 class="text-primary mb-3">$${nekretnina.cena.stara}</h4>
-                                <a class="d-block h5 mb-2" href="#">${nekretnina.naziv}</a>
+                                <span class="d-block h5 mb-2">${nekretnina.naziv}</span>
                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>${nekretnina.lokacija.ulica}, ${ispisiPodatkaONekretnini(nekretnina.lokacija.grad, gradovi)}, ${ispisiPodatkaONekretnini(nekretnina.lokacija.drzava, drzave)}</p>
                             </div>
                             <div class="d-flex border-top">
