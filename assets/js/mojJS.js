@@ -8,7 +8,7 @@ window.onload = function(){
 
 function kreirajAgente(agenti){
     let ispis = `<div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                    <h1 class="mb-3">Property Agents</h1>
+                    <h4 class="mb-3">Property Agents</h4>
                     <p>Our agents are extremly qualified and offer the best help on the market.</p>
                 </div>
                 <div class="row g-4">`;
@@ -61,7 +61,7 @@ function kreirajPadajucuListu(podaci, idListe, idBloka, nultaOpcija){
 function kreirajIkonice(ikonice){
     let ispis = `<div class="container">
                     <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                        <h1 class="mb-3">Property Types</h1>
+                        <h4 class="mb-3">Property Types</h4>
                         <p>Select which property type you would like to browse</p>
                     </div>
                  <div class="row g-4">`;
@@ -70,9 +70,9 @@ function kreirajIkonice(ikonice){
                                 <a class="cat-item d-block bg-light text-center rounded p-3" href="property.html">
                                     <div class="rounded p-4">
                                         <div class="icon mb-3">
-                                            <img class="img-fluid" src="${ikonica.slika.src}" alt="${ikonica.slika.alt}">
+                                            <img class="img-fluid" src="${ikonica.slika.src}" alt="${ikonica.slika.alt}"/>
                                         </div>
-                                        <h6>${ikonica.ime}</h6>
+                                        <h5>${ikonica.ime}</h5>
                                         <span>${ikonica.opis}</span>
                                     </div>
                                 </a>
@@ -94,13 +94,13 @@ function ispisNekretnina(nekretnine, kategorije, tipProdaje, gradovi, drzave){
             ispis+=`<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <a href=""><img class="img-fluid" src="${nekretnina.slika.src}" alt="${nekretnina.slika.alt}"></a>
+                                <a href=""><img class="img-fluid" src="${nekretnina.slika.src}" alt="${nekretnina.slika.alt}"/></a>
                                 <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">${ispisiPodatkaONekretnini(nekretnina.tipProdaje, tipProdaje)}</div>
                                 <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">${ispisiPodatkaONekretnini(nekretnina.kategorijaObjekta, kategorije)}</div>
                             </div>
                             <div class="p-4 pb-0">
-                                <h5 class="text-primary mb-3">$${nekretnina.cena.stara}</h5>
-                                <a class="d-block h5 mb-2" href="">${nekretnina.naziv}</a>
+                                <h4 class="text-primary mb-3">$${nekretnina.cena.stara}</h4>
+                                <a class="d-block h5 mb-2" href="#">${nekretnina.naziv}</a>
                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>${nekretnina.lokacija.ulica}, ${ispisiPodatkaONekretnini(nekretnina.lokacija.grad, gradovi)}, ${ispisiPodatkaONekretnini(nekretnina.lokacija.drzava, drzave)}</p>
                             </div>
                             <div class="d-flex border-top">
@@ -134,6 +134,7 @@ function proveraJednine(broj, rec){
     }
     return ispis;
 };
+
 
 var filtriraneNekretninePoKategoriji = [];
 function filtriranjePoKategoriji(vrednost){
